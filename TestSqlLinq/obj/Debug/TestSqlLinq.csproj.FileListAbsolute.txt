@@ -1,0 +1,13 @@
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/bin/Debug/TestSqlLinq.exe.config
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/bin/Debug/TestSqlLinq.exe
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/bin/Debug/TestSqlLinq.pdb
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/bin/Debug/MySql.Data.dll
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/obj/Debug/TestSqlLinq.csprojResolveAssemblyReference.cache
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/obj/Debug/TestSqlLinq.csproj.CoreCompileInputs.cache
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/obj/Debug/TestSqlLinq.exe
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/obj/Debug/TestSqlLinq.pdb
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/bin/Debug/EntityFramework.dll
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/bin/Debug/EntityFramework.SqlServer.dll
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/bin/Debug/MySql.Data.Entity.EF6.dll
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/bin/Debug/EntityFramework.xml
+/home/alex/RiderProjects/TestSqlLinq/TestSqlLinq/bin/Debug/EntityFramework.SqlServer.xml
