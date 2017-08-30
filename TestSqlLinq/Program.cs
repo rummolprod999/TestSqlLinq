@@ -13,7 +13,7 @@ namespace TestSqlLinq
 {
     internal class Program
     {
-        static string connectionString = $"Server=localhost;port=3306;Database=tender2;User Id=root;password=1234;CharSet=utf8;Convert Zero Datetime=True;default command timeout=3600;Connection Timeout=3600";
+        public static string connectionString = $"Server=localhost;port=3306;Database=tender2;User Id=root;password=1234;CharSet=utf8;Convert Zero Datetime=True;default command timeout=3600;Connection Timeout=3600";
         public static void Main(string[] args)
         {
             //DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
@@ -28,12 +28,20 @@ namespace TestSqlLinq
                 }
             }*/
 
-            CompResContext db = new CompResContext();
-            var ArCompRes = db.ArchiveComplaintResults.ToList();
-            foreach (var v in ArCompRes)
+            using (CompResContext db = new CompResContext())
             {
-                Console.WriteLine($"{v.Id} {v.Archive} {v.Region}");
+                var ArCompRes = db.ArchiveComplaintResults.Where(p => p.Archive.Contains("test")).ToList();
+                foreach (var v in ArCompRes)
+                {
+                    Console.WriteLine($"{v.Id} {v.Archive} {v.Region}");
+                }
+                /*ArchiveComplaintRes a  = new ArchiveComplaintRes {Archive = "test_insert", Region = "66"};
+                db.ArchiveComplaintResults.Add(a);*/
+                /*ArchiveComplaintRes b = db.ArchiveComplaintResults.FirstOrDefault();
+                b.Archive = "grlishgkf";*/
+                db.SaveChanges();
             }
+            
         }
     }
     
@@ -44,17 +52,17 @@ namespace TestSqlLinq
         public int Id { get; set; }
         
         [Column(Name = "arhiv")]
-        public int Archive { get; set; }
+        public string Archive { get; set; }
         
         [Column(Name = "region")]
-        public int Region { get; set; }
+        public string Region { get; set; }
     }
 
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     class CompResContext : DbContext
     {
         public CompResContext()
-            : base(nameOrConnectionString: "ConnectMysql")
+            : base(nameOrConnectionString: Program.connectionString)
         {
 
         }
