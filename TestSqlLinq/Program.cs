@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
@@ -7,7 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Data.Entity;
 using System.Linq;
 using MySql.Data.Entity;
-
+using Annot = System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestSqlLinq
 {
@@ -30,31 +31,34 @@ namespace TestSqlLinq
 
             using (CompResContext db = new CompResContext())
             {
+                //db.ArchiveComplaintResults.Load();
                 var ArCompRes = db.ArchiveComplaintResults.Where(p => p.Archive.Contains("test")).ToList();
                 foreach (var v in ArCompRes)
                 {
                     Console.WriteLine($"{v.Id} {v.Archive} {v.Region}");
                 }
-                /*ArchiveComplaintRes a  = new ArchiveComplaintRes {Archive = "test_insert", Region = "66"};
-                db.ArchiveComplaintResults.Add(a);*/
-                /*ArchiveComplaintRes b = db.ArchiveComplaintResults.FirstOrDefault();
-                b.Archive = "grlishgkf";*/
+                ArchiveComplaintRes a  = new ArchiveComplaintRes {Archive = "test_insert", Region = "66"};
+                db.ArchiveComplaintResults.Add(a);
+                ArchiveComplaintRes b = db.ArchiveComplaintResults.FirstOrDefault();
+                if (b != null) b.Archive = "grlishgkf";
                 db.SaveChanges();
             }
-            
+            Console.ReadKey();
+
         }
     }
     
-    [Table(Name = "arhiv_complaint_result")]
+    [Annot.Table("arhiv_complaint_result")]
     public class ArchiveComplaintRes
     {
-        [Column(Name = "id", IsPrimaryKey = true, IsDbGenerated = true)]
+        [Key, Annot.DatabaseGeneratedAttribute(Annot.DatabaseGeneratedOption.Identity)]
+        [Annot.Column("id")]
         public int Id { get; set; }
         
-        [Column(Name = "arhiv")]
+        [Annot.Column("arhiv")]
         public string Archive { get; set; }
         
-        [Column(Name = "region")]
+        [Annot.Column("region")]
         public string Region { get; set; }
     }
 
@@ -62,7 +66,7 @@ namespace TestSqlLinq
     class CompResContext : DbContext
     {
         public CompResContext()
-            : base(nameOrConnectionString: Program.connectionString)
+            : base(nameOrConnectionString: "ConnectMysql")
         {
 
         }
@@ -75,7 +79,7 @@ namespace TestSqlLinq
  
         public DbSet<ArchiveComplaintRes> ArchiveComplaintResults { get; set; }
         
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ArchiveComplaintRes>()
                 .ToTable("arhiv_complaint_result");
@@ -86,7 +90,7 @@ namespace TestSqlLinq
             modelBuilder.Entity<ArchiveComplaintRes>()
                 .Property(b => b.Region).HasColumnName("region");
             
-        }
+        }*/
     }
 
 }
