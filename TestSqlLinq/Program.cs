@@ -37,11 +37,14 @@ namespace TestSqlLinq
                 {
                     Console.WriteLine($"{v.Id} {v.Archive} {v.Region}");
                 }
-                var Afors = db.ArchiveForResults.Where(p => p.ArchiveComplaintResId == 14).ToList();
+                var Afors = db.ArchiveForResults.Where(p => p.ArchiveComplaintResId == 14);
+                Console.WriteLine(Afors.ToString());
                 foreach (var v in Afors)
                 {
                     db.ArchiveForResults.Remove(v);
                 }
+                
+                
                 db.SaveChanges();
                 /*ArchiveComplaintRes a  = new ArchiveComplaintRes {Archive = "testfor", Region = "77"};
                 db.ArchiveComplaintResults.Add(a);
